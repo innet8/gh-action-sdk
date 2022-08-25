@@ -24,6 +24,7 @@ runs:
           --env NO_REFRESH_CHECK \
           --env NO_SHFMT_CHECK \
           --env PACKAGES \
+          --env ARCH \
           --env PKG \
           --env ADDR \
           --env BRANCH \
