@@ -131,10 +131,4 @@ else
 	done
 fi
 
-if [ -d bin/ ]; then
-	mv bin/ /artifacts/
-fi
-
-if [ -d logs/ ]; then
-	mv logs/ /artifacts/
-fi
+find "bin/" -type f -name "*.ipk" -exec cp -f {} "/artifacts" \;
