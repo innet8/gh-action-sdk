@@ -32,7 +32,7 @@ download_sdk() {
     echo "Download $sdk_name SDK"
     version="${sdk_name#*-}"
     target="${sdk_name%-*}"
-
+    cd /home/build
     # Download/Update OpenWrt SDK
     git clone $gl_inet_imagebuilder_url/openwrt-sdk-$sdk_name.git 
     pushd openwrt-sdk-$sdk_name > /dev/null

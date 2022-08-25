@@ -1,0 +1,42 @@
+name: open build
+on: workflow_dispatch
+env:
+  REPO_URL: https://github.com/innet8/rtty.git
+  REPO_BRANCH: openwrt-package
+
+jobs:
+  build:
+    name: Build ${{ matrix.arch }} ipk
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:
+          - mips_24kc-19.07.7
+          - mipsel_24kc-19.07.7
+          - mvebu-cortexa53-19.07.7
+          - x86_64
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add test directories
+        run: mkdir artifacts feed
+
+      - name: Build
+        uses: innet8/gh-action-sdk@master
+        env:
+          ARCH: ${{ matrix.arch }}
+          ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
+          FEED_DIR: ${{ github.workspace }}/feed
+          MODE: open
+          DEPENDENCES: libev libopenssl libmbedtls zlib
+          ADDR: ${{ env.REPO_URL }}
+          BRANCH: ${{ env.REPO_BRANCH }}
+          PKG: rtty
+
+      - name: Store packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.arch}}-packages
+          path: bin/packages/${{ matrix.arch }}/packages/*.ipk

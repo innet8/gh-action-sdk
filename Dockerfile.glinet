@@ -1,0 +1,11 @@
+ARG CONTAINER=openwrtorg/sdk
+ARG ARCH=ipq40xx-generic-18.06.4
+FROM $CONTAINER:ipq40xx-generic-18.06.4
+
+ENV ARCH=$ARCH
+
+LABEL "com.github.actions.name"="OpenWrt SDK"
+
+ADD glinet_sdk.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
