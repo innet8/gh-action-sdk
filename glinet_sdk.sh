@@ -49,6 +49,7 @@ compile_sdk(){
         exit 0
     else
         git clone -b $BRANCH $ADDR package/$PKG
+        cp /home/build/mbedtls-2.12.0-gpl.tgz dl/
         make \
             BUILD_LOG="$BUILD_LOG" \
             IGNORE_ERRORS="$IGNORE_ERRORS" \
