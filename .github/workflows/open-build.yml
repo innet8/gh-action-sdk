@@ -31,9 +31,9 @@ jobs:
           BRANCH: ${{ env.REPO_BRANCH }}
           PKG: rtty
 
-      - name: Release and Upload Assets
-        uses: softprops/action-gh-release@v1
+      - name: Save Build Result
+        uses: actions/upload-artifact@v2
         with:
-          files: "rtty*.ipk"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: ipk
+          path: |
+            rtty*.ipk

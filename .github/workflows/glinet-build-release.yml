@@ -1,5 +1,8 @@
 name: glinet build
-on: workflow_dispatch
+on:
+  push:
+    tags:
+      - "*"
 env:
   REPO_URL: https://github.com/innet8/rtty.git
   REPO_BRANCH: openwrt-package

@@ -1,0 +1,35 @@
+name: glinet build
+on: workflow_dispatch
+env:
+  REPO_URL: https://github.com/innet8/rtty.git
+  REPO_BRANCH: openwrt-package
+
+jobs:
+  build:
+    name: Build ${{ matrix.arch }} ipk
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch:
+          - ipq_ipq40xx-qsdk11
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build
+        uses: innet8/gh-action-sdk@master
+        env:
+          ARCH: ${{ matrix.arch }}
+          MODE: glinet
+          DEPENDENCES: libev libopenssl libmbedtls zlib
+          ADDR: ${{ env.REPO_URL }}
+          BRANCH: ${{ env.REPO_BRANCH }}
+          PKG: rtty
+
+      - name: Save Build Result
+        uses: actions/upload-artifact@v2
+        with:
+          name: ipk
+          path: |
+            rtty*.ipk
