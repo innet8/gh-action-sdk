@@ -3,6 +3,10 @@ name: Test
 on:
   pull_request:
 
+env:
+  REPO_URL: https://github.com/zzzzzhy/lede.git
+  REPO_BRANCH: master
+
 jobs:
   build:
     name: Test ${{ matrix.arch }}
@@ -11,8 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         arch:
-          - arm_cortex-a15_neon-vfpv4
-          - mips_24kc
+          - ipq
+          - mips_24kc-19.07
           - x86_64
 
     steps:
@@ -29,7 +33,9 @@ jobs:
           FEED_DIR: ${{ github.workspace }}/feed
           MODE: only_custom
           DEPENDENCES: libev libopenssl libmbedtls zlib
-          PACKAGES: rtty
+          ADDR: $REPO_URL
+          BRANCH: $REPO_BRANCH
+          PKG: rtty
 
       - name: Verify packages saved
         run: find artifacts/bin/packages/${{ matrix.arch }}/packages/ -maxdepth 1 -name '*.ipk' -type f | grep .

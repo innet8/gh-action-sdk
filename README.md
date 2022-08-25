@@ -66,3 +66,8 @@ The action reads a few env variables:
 * `NO_REFRESH_CHECK` disable check if patches need a refresh.
 * `NO_SHFMT_CHECK` disable check if init files are formated
 * `V` changes the build verbosity level.
+* `MODE` only_custom or normal
+* `DEPENDENCES` 编译时需要的依赖包
+* `ADDR`: 包仓库地址
+* `BRANCH`: 分支名称
+* `PKG`: 软件名称
