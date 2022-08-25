@@ -25,9 +25,7 @@ EOF
 	exit 0
 }
 
-[ -z "$1" ] && usage
-
-sdk_name=$1
+sdk_name=$ARCH
 
 download_sdk() {
     echo "Download $sdk_name SDK"
