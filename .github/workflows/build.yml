@@ -16,7 +16,7 @@ jobs:
           - mipsel_24kc
           - mvebu-cortexa53
           - x86_64
-        version: 19.07.7
+        version: [19.07.7]
 
     steps:
       - uses: actions/checkout@v3
