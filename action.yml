@@ -11,7 +11,7 @@ runs:
       id: inputs
     - run: sudo chown -R 1000:1000 ${{ steps.inputs.outputs.artifacts_dir }} ${{ steps.inputs.outputs.feed_dir }}
       shell: bash
-    - run: docker build --build-arg CONTAINER --build-arg ARCH -t sdk $GITHUB_ACTION_PATH
+    - run: docker build --build-arg CONTAINER --build-arg ARCH --build-arg MODE -t sdk $GITHUB_ACTION_PATH
       shell: bash
     - run: |
         docker run --rm \
@@ -24,6 +24,7 @@ runs:
           --env NO_REFRESH_CHECK \
           --env NO_SHFMT_CHECK \
           --env PACKAGES \
+          --env DEPENDENCES \
           --env V \
           -v ${{ steps.inputs.outputs.artifacts_dir }}:/artifacts \
           -v ${{ steps.inputs.outputs.feed_dir }}:/feed \

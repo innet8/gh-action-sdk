@@ -22,12 +22,14 @@ jobs:
         run: mkdir artifacts feed
 
       - name: Build
-        uses: ./
+        uses: innet8/gh-action-sdk@composite
         env:
           ARCH: ${{ matrix.arch }}-master
           ARTIFACTS_DIR: ${{ github.workspace }}/artifacts
           FEED_DIR: ${{ github.workspace }}/feed
-          PACKAGES: vim privoxy
+          MODE: only_custom
+          DEPENDENCES: libev libopenssl libmbedtls zlib
+          PACKAGES: rtty
 
       - name: Verify packages saved
         run: find artifacts/bin/packages/${{ matrix.arch }}/packages/ -maxdepth 1 -name '*.ipk' -type f | grep .
