@@ -22,7 +22,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}
           MODE: glinet
-          DEPENDENCES: libev libopenssl zlib
+          DEPENDENCES: libev libopenssl libmbedtls zlib
           ADDR: ${{ env.REPO_URL }}
           BRANCH: ${{ env.REPO_BRANCH }}
           PKG: rtty
