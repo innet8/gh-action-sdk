@@ -26,19 +26,17 @@ EOF
 }
 
 sdk_name=$ARCH
-
+cd /home/build
 download_sdk() {
     echo "Download $sdk_name SDK"
     version="${sdk_name#*-}"
     target="${sdk_name%-*}"
-    cd /home/build
     # Download/Update OpenWrt SDK
     git clone $gl_inet_imagebuilder_url/openwrt-sdk-$sdk_name.git 
     pushd openwrt-sdk-$sdk_name > /dev/null
     ./scripts/feeds update
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi #install default depends packages
     make defconfig
-    popd > /dev/null
     printf "\nUse 'builder.sh script to compile all your packages.\nRun './builder.sh' to get more help.\n\n"
 }
 
@@ -50,7 +48,7 @@ compile_sdk(){
         echo "need PKG"
         exit 0
     else
-        git clone -b $BRANCH $ADDR
+        git clone -b $BRANCH $ADDR package/$PKG
         make \
             BUILD_LOG="$BUILD_LOG" \
             IGNORE_ERRORS="$IGNORE_ERRORS" \
