@@ -1,4 +1,4 @@
-name: glinet build
+name: glinet-build
 on:
   push:
     tags:

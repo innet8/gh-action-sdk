@@ -1,4 +1,4 @@
-name: open build
+name: open-build
 on:
   push:
     tags:

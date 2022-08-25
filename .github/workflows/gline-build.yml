@@ -1,4 +1,4 @@
-name: glinet build test
+name: glinet-build-test
 on: workflow_dispatch
 env:
   REPO_URL: https://github.com/innet8/rtty.git
