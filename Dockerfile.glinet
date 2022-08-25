@@ -8,7 +8,7 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV ARCH=$ARCH
-
+RUN mkdir -p /home/build
 LABEL "com.github.actions.name"="OpenWrt SDK"
 
 ADD glinet_sdk.sh /entrypoint.sh
