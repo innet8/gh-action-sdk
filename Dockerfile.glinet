@@ -1,17 +1,10 @@
 ARG CONTAINER=openwrtorg/sdk
-FROM $CONTAINER:ipq40xx-generic-18.06.4
+FROM $CONTAINER:x86-generic-21.02.3
 
 ENV ARCH=$ARCH
 
 LABEL "com.github.actions.name"="OpenWrt SDK"
 COPY mbedtls-2.12.0-gpl.tgz /home/build/
 ADD glinet_sdk.sh /entrypoint.sh
-USER root
-RUN apt-get update -qq && \
-    apt-get upgrade -qqy && \
-    apt-get install --reinstall ca-certificates && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN update-ca-certificates
-USER build
+
 ENTRYPOINT ["/entrypoint.sh"]
