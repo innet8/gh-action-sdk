@@ -36,9 +36,7 @@ download_sdk() {
     cd openwrt-sdk-$sdk_name > /dev/null
     sed -i '/routing/d' feeds.conf.default
     sed -i '/telephony/d' feeds.conf.default
-    echo "ttttttttttttt"
-    ./scripts/feeds update -f
-    echo "ddddddddddddd"
+    ./scripts/feeds update 
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi 
     make defconfig
     printf "\nUse 'builder.sh script to compile all your packages.\nRun './builder.sh' to get more help.\n\n"
