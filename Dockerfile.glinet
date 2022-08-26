@@ -1,5 +1,5 @@
 ARG CONTAINER=openwrtorg/sdk
-FROM $CONTAINER:x86-generic-21.02.3
+FROM $CONTAINER:ipq40xx-generic-18.06.4
 
 ENV ARCH=$ARCH
 
