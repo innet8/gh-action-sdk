@@ -34,6 +34,7 @@ download_sdk() {
     # Download/Update OpenWrt SDK
     git clone --depth=1 $gl_inet_imagebuilder_url/openwrt-sdk-$sdk_name.git 
     pushd openwrt-sdk-$sdk_name > /dev/null
+    sed -i '/telephony/d' feeds.conf.default
     echo "ttttttttttttt"
     ./scripts/feeds update -a
     echo "ddddddddddddd"
