@@ -33,11 +33,11 @@ download_sdk() {
     target="${sdk_name%-*}"
     # Download/Update OpenWrt SDK
     git clone --depth=1 $gl_inet_imagebuilder_url/openwrt-sdk-$sdk_name.git 
-    pushd openwrt-sdk-$sdk_name > /dev/null
+    cd openwrt-sdk-$sdk_name > /dev/null
     sed -i '/routing/d' feeds.conf.default
     sed -i '/telephony/d' feeds.conf.default
     echo "ttttttttttttt"
-    ./scripts/feeds update -i
+    ./scripts/feeds update -f
     echo "ddddddddddddd"
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi 
     make defconfig
