@@ -32,9 +32,11 @@ download_sdk() {
     version="${sdk_name#*-}"
     target="${sdk_name%-*}"
     # Download/Update OpenWrt SDK
-    git clone $gl_inet_imagebuilder_url/openwrt-sdk-$sdk_name.git 
+    git clone --depth=1 $gl_inet_imagebuilder_url/openwrt-sdk-$sdk_name.git 
     pushd openwrt-sdk-$sdk_name > /dev/null
+    echo "ttttttttttttt"
     ./scripts/feeds update > /dev/null 2>&1
+    echo "ddddddddddddd"
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi > /dev/null 2>&1
     make defconfig
     printf "\nUse 'builder.sh script to compile all your packages.\nRun './builder.sh' to get more help.\n\n"
