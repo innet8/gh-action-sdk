@@ -35,6 +35,10 @@ cat feeds.conf
 ./scripts/feeds update -a > /dev/null
 make defconfig > /dev/null
 
+if [ -n "$DEPENDENCES" ]; then
+	./scripts/feeds install $DEPENDENCES
+fi
+
 if [ -z "$PACKAGES" ]; then
 	# compile all packages in feed
 	for FEED in $ALL_CUSTOM_FEEDS; do
