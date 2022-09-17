@@ -2,7 +2,7 @@ ARG CONTAINER=openwrt/sdk
 ARG ARCH=mips_24kc
 FROM $CONTAINER:$ARCH 
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
-    apt-get install -y nodejs
+    sudo apt-get install -y nodejs
 LABEL "com.github.actions.name"="OpenWrt SDK"
 
 ADD entrypoint.sh /
