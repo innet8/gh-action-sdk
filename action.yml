@@ -29,6 +29,7 @@ runs:
           --env ADDR \
           --env BRANCH \
           --env DEPENDENCES \
+          --env CHECKS \
           --env V \
           -v ${{ steps.inputs.outputs.artifacts_dir }}:/artifacts \
           -v ${{ steps.inputs.outputs.feed_dir }}:/feed \
