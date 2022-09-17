@@ -42,7 +42,7 @@ fi
 if [ -z "$PACKAGES" ]; then
 	# compile all packages in feed
 	for FEED in $ALL_CUSTOM_FEEDS; do
-		./scripts/feeds install -p "$FEED" -f -a
+		./scripts/feeds install -p "$FEED" -a
 	done
 	make \
 		BUILD_LOG="$BUILD_LOG" \
