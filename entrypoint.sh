@@ -51,12 +51,13 @@ if [ -z "$PACKAGES" ]; then
 		V="$V" \
 		-j "$(nproc)"
 else
-	if [ -z "$CHECKS" ]; then
-		# compile specific packages with checks
-		for PKG in $PACKAGES; do
-			for FEED in $ALL_CUSTOM_FEEDS; do
-				./scripts/feeds install -p "$FEED" -f "$PKG"
-			done
+	# compile specific packages with checks
+	for PKG in $PACKAGES; do
+		for FEED in $ALL_CUSTOM_FEEDS; do
+			./scripts/feeds install -p "$FEED" -f "$PKG"
+		done
+		if [ -z "$CHECKS" ]; then
+			
 			make \
 				BUILD_LOG="$BUILD_LOG" \
 				IGNORE_ERRORS="$IGNORE_ERRORS" \
@@ -108,9 +109,10 @@ else
 					exit 1
 				fi
 			fi
-
-		done
-
+		fi
+	done
+	
+	if [ -z "$CHECKS" ]; then
 		make \
 			-f .config \
 			-f tmp/.packagedeps \
