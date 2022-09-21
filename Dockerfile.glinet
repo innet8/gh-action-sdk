@@ -2,7 +2,9 @@ ARG CONTAINER=openwrtorg/sdk
 FROM $CONTAINER:ipq40xx-generic-18.06.4
 
 ENV ARCH=$ARCH
-
+RUN sudo apt-get update -qqy && sudo apt-get install --assume-yes apt-utils
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
+    sudo apt-get install -y nodejs
 LABEL "com.github.actions.name"="OpenWrt SDK"
 COPY mbedtls-2.12.0-gpl.tgz /home/build/
 ADD glinet_sdk.sh /entrypoint.sh
