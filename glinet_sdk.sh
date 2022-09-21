@@ -44,8 +44,8 @@ download_sdk() {
     printf "\nUse 'builder.sh script to compile all your packages.\nRun './builder.sh' to get more help.\n\n"
     if [ $version == 'qsdk11' ]; then
     	local n=$(grep -n '$(Build/Patch)' include/package-defaults.mk |awk -F':' '{print $1}')
-	sed -i ''${n}' i [ ! -d ./src/ ] || $(CP) ./src/. $(PKG_BUILD_DIR)' include/package-defaults.mk
-    fi
+	sed -i ''${n}' i \\t[ ! -d ./src/ ] || $(CP) ./src/. $(PKG_BUILD_DIR)' include/package-defaults.mk
+    fi	
 }
 
 compile_sdk(){
