@@ -36,6 +36,7 @@ download_sdk() {
     cd openwrt-sdk-$sdk_name > /dev/null
     sed -i '/routing/d' feeds.conf.default
     sed -i '/telephony/d' feeds.conf.default
+	echo "src-link $FEEDNAME /feed/" >> feeds.conf.default
     ./scripts/feeds update 
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi 
     make defconfig
@@ -46,24 +47,45 @@ compile_sdk(){
     for DEP in $DEPENDENCES; do
         ./scripts/feeds install "$DEP"
     done
-    if [ -z "$PKG" ]; then
-        echo "need PKG"
-        exit 0
-    else
-        git clone -b $BRANCH $ADDR package/$PKG
-	mkdir dl
-        cp /home/build/mbedtls-2.12.0-gpl.tgz dl/
-        make \
-            BUILD_LOG="$BUILD_LOG" \
-            IGNORE_ERRORS="$IGNORE_ERRORS" \
-            V="$V" \
-            -j "$(nproc)" \
-            "package/$PKG/compile" || {
-                RET=$?
-                make "package/$PKG/compile" V=s -j 1
-                exit $RET
-            }
-    fi
+	if [ -n "$PACKAGES" ]; then
+		for PKG in $PACKAGES; do
+			for FEED in $ALL_CUSTOM_FEEDS; do
+				./scripts/feeds install -p "$FEED" -f "$PKG"
+			done
+		done
+		for PKG in $PACKAGES; do
+			make \
+				BUILD_LOG="$BUILD_LOG" \
+				IGNORE_ERRORS="$IGNORE_ERRORS" \
+				V="$V" \
+				-j "$(nproc)" \
+				"package/$PKG/compile" || {
+					RET=$?
+					make "package/$PKG/compile" V=s -j 1
+					exit $RET
+				}		
+		 done
+	else
+		if [ -z "$PKG" ]; then
+			echo "need PKG"
+			exit 0
+		else
+			git clone -b $BRANCH $ADDR package/$PKG
+			mkdir dl
+			cp /home/build/mbedtls-2.12.0-gpl.tgz dl/
+			make \
+				BUILD_LOG="$BUILD_LOG" \
+				IGNORE_ERRORS="$IGNORE_ERRORS" \
+				V="$V" \
+				-j "$(nproc)" \
+				"package/$PKG/compile" || {
+					RET=$?
+					make "package/$PKG/compile" V=s -j 1
+					exit $RET
+				}
+		fi
+	fi
+
 
     find "bin/" -type f -name "*.ipk" -exec cp -f {} "/artifacts" \;
     exit 0
