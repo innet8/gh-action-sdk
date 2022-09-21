@@ -1,5 +1,5 @@
 ARG CONTAINER=openwrtorg/sdk
-FROM $CONTAINER:ipq40xx-generic-18.06.4
+FROM $CONTAINER:ipq40xx-generic-22.03.0
 
 ENV ARCH=$ARCH
 RUN sudo apt-get update -qqy && sudo apt-get install --assume-yes apt-utils
