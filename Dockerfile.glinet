@@ -1,4 +1,4 @@
-ARG CONTAINER=openwrtorg/sdk
+ARG CONTAINER=openwrt/sdk
 FROM $CONTAINER:ipq40xx-generic-22.03.0
 
 ENV ARCH=$ARCH
