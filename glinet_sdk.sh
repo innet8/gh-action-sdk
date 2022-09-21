@@ -49,9 +49,7 @@ compile_sdk(){
     done
 	if [ -n "$PACKAGES" ]; then
 		for PKG in $PACKAGES; do
-			for FEED in $ALL_CUSTOM_FEEDS; do
-				./scripts/feeds install -p "$FEED" -f "$PKG"
-			done
+			./scripts/feeds install -p "$FEEDNAME" -f "$PKG"
 		done
 		for PKG in $PACKAGES; do
 			make \
