@@ -38,6 +38,7 @@ download_sdk() {
     sed -i '/routing/d' feeds.conf.default
     sed -i '/telephony/d' feeds.conf.default
 	echo "src-link $FEEDNAME /feed/" >> feeds.conf.default
+	sed -i 's/19.07.7/19.07.8/' feeds.conf.default
     ./scripts/feeds update 
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi 
     make defconfig
