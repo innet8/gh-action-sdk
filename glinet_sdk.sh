@@ -41,8 +41,8 @@ download_sdk() {
 				echo "-------------"
 				echo "src-link $FEEDNAME /feed/" >> feeds.conf.default
 		fi
-		ehco "222222222222"
-		sed -i 's/19.07.7/19.07.8/' feeds.conf.default
+		echo "222222222222"
+		sed -i 's/19.07.7/19.07.8/g' feeds.conf.default
 		echo "3333333333333333"
     ./scripts/feeds update 
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi 
