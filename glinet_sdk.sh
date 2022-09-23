@@ -37,7 +37,7 @@ download_sdk() {
     cd openwrt-sdk-$sdk_name > /dev/null
     sed -i '/routing/d' feeds.conf.default
     sed -i '/telephony/d' feeds.conf.default
-    if [ -n $FEEDNAME ]; then
+    if [ -n "$FEEDNAME" ]; then
 		echo "src-link $FEEDNAME /feed/" >> feeds.conf.default
 	fi
 	sed -i 's/19.07.7/19.07.8/' feeds.conf.default
@@ -47,7 +47,7 @@ download_sdk() {
     printf "\nUse 'builder.sh script to compile all your packages.\nRun './builder.sh' to get more help.\n\n"
     if [ $version == 'qsdk11' ]; then
     	local n=$(grep -n '$(Build/Patch)' include/package-defaults.mk |awk -F':' '{print $1}')
-	sed -i ''${n}' i \\t[ ! -d ./src/ ] || $(CP) ./src/. $(PKG_BUILD_DIR)' include/package-defaults.mk
+		sed -i ''${n}' i \\t[ ! -d ./src/ ] || $(CP) ./src/. $(PKG_BUILD_DIR)' include/package-defaults.mk
     fi	
 }
 
