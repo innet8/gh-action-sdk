@@ -12,8 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         arch:
-          - i386_pentium4
-        version: [21.02.3]
+          - ramips-mt7621
+        version: [22.03.0]
 
     steps:
       - uses: actions/checkout@v3
