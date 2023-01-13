@@ -36,15 +36,20 @@ download_sdk() {
     # Download/Update OpenWrt SDK
     git clone --depth=1 $gl_inet_imagebuilder_url/openwrt-sdk-$sdk_name.git 
     cd openwrt-sdk-$sdk_name > /dev/null
+    if [ $sdk_name == 'ipq807x-2102' ]; then
+    	pushd build_dir/target-arm_cortex-a7_musl_eabi/linux-ipq807x_ipq60xx/linux-4.4.60-qsdk-11f09717303ecd83c3a64e9efe23f25921dc1016/scripts/basic/  > /dev/null
+	ln -s .fixdep.bin fixdep
+	popd  > /dev/null
+	pushd build_dir/target-arm_cortex-a7_musl_eabi/linux-ipq807x_ipq60xx/linux-4.4.60-qsdk-11f09717303ecd83c3a64e9efe23f25921dc1016/scripts/mod/  > /dev/null
+	ln -s .modpost.bin modpost
+	popd  > /dev/null
+    fi
     sed -i '/routing/d' feeds.conf.default
     sed -i '/telephony/d' feeds.conf.default
     if [ -n "$FEEDNAME" ]; then
-				echo "-------------"
-				echo "src-link $FEEDNAME /feed/" >> feeds.conf.default
-		fi
-		echo "222222222222"
-		sed -i 's/19.07.7/19.07.8/g' feeds.conf.default
-		echo "3333333333333333"
+	echo "src-link $FEEDNAME /feed/" >> feeds.conf.default
+    fi
+    sed -i 's/19.07.7/19.07.8/g' feeds.conf.default
     ./scripts/feeds update 
     ./scripts/feeds install uci curl libubus libubox libiwinfo libsqlite3 mqtt fcgi 
     make defconfig
