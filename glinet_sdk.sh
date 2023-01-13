@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -ef
-targets="ar71xx-1806 ath79-1907 ramips-1806 ramips-1907 ipq806x-qsdk53 ipq_ipq40xx-qsdk11 ipq_ipq60xx-qsdk11 mvebu-1907 siflower-1806"
+targets="ar71xx-1806 ath79-1907 ramips-1806 ramips-1907 ipq806x-qsdk53 ipq_ipq40xx-qsdk11 ipq_ipq60xx-qsdk11 mvebu-1907 siflower-1806 ipq807x-2102"
 
 gl_inet_imagebuilder_url="https://github.com/gl-inet-builder"
 git config --global http.sslVerify false
