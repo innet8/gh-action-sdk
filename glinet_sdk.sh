@@ -38,10 +38,10 @@ download_sdk() {
     cd openwrt-sdk-$sdk_name > /dev/null
     if [ $sdk_name == 'ipq807x-2102' ]; then
     	pushd build_dir/target-arm_cortex-a7_musl_eabi/linux-ipq807x_ipq60xx/linux-4.4.60-qsdk-11f09717303ecd83c3a64e9efe23f25921dc1016/scripts/basic/  > /dev/null
-	ln -s .fixdep.bin fixdep
+	[ -e 'fixdep' ] || ln -s .fixdep.bin fixdep
 	popd  > /dev/null
 	pushd build_dir/target-arm_cortex-a7_musl_eabi/linux-ipq807x_ipq60xx/linux-4.4.60-qsdk-11f09717303ecd83c3a64e9efe23f25921dc1016/scripts/mod/  > /dev/null
-	ln -s .modpost.bin modpost
+	[ -e 'modpost' ] || ln -s .modpost.bin modpost
 	popd  > /dev/null
     fi
     sed -i '/routing/d' feeds.conf.default
