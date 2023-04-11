@@ -58,7 +58,7 @@ download_sdk() {
     	local n=$(grep -n '$(Build/Patch)' include/package-defaults.mk |awk -F':' '{print $1}')
 		sed -i ''${n}' i \\t[ ! -d ./src/ ] || $(CP) ./src/. $(PKG_BUILD_DIR)' include/package-defaults.mk
     fi	
-    make download
+    make download -j1 V=s
 }
 
 compile_sdk(){
