@@ -87,10 +87,11 @@ compile_sdk(){
 			exit 0
 		else
 			git clone -b $BRANCH $ADDR package/$PKG
-			mkdir dl
+			mkdir -p dl
 			cp /home/build/mbedtls-2.12.0-gpl.tgz dl/
 			cp /home/build/zlib-1.2.11.tar.xz dl/
 			cp /home/build/openssl-1.1.1i.tar.gz dl/
+			wget -O dl/ https://github.com/innet8/rtty/releases/download/v8.0.1-1/rtty-8.0.1-1.tar.gz
 			make \
 				BUILD_LOG="$BUILD_LOG" \
 				IGNORE_ERRORS="$IGNORE_ERRORS" \
