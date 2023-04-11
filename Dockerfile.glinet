@@ -7,6 +7,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
     sudo apt-get install -y nodejs
 LABEL "com.github.actions.name"="OpenWrt SDK"
 COPY mbedtls-2.12.0-gpl.tgz /home/build/
+COPY zlib-1.2.11.tar.xz /home/build/
 ADD glinet_sdk.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
