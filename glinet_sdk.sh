@@ -88,6 +88,7 @@ compile_sdk(){
 			git clone -b $BRANCH $ADDR package/$PKG
 			mkdir dl
 			cp /home/build/mbedtls-2.12.0-gpl.tgz dl/
+			cp /home/build/zlib-1.2.11.tar.xz dl/
 			make \
 				BUILD_LOG="$BUILD_LOG" \
 				IGNORE_ERRORS="$IGNORE_ERRORS" \
