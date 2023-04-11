@@ -89,6 +89,7 @@ compile_sdk(){
 			mkdir dl
 			cp /home/build/mbedtls-2.12.0-gpl.tgz dl/
 			cp /home/build/zlib-1.2.11.tar.xz dl/
+			cp /home/build/openssl-1.1.1i.tar.gz dl/
 			make \
 				BUILD_LOG="$BUILD_LOG" \
 				IGNORE_ERRORS="$IGNORE_ERRORS" \
