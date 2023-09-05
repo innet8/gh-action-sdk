@@ -3,7 +3,7 @@ ARG ARCH=mips_24kc
 FROM $CONTAINER:$ARCH
 
 RUN sudo apt-get update -qqy && sudo apt-get install --assume-yes apt-utils
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && \
     sudo apt-get install -y nodejs
 LABEL "com.github.actions.name"="OpenWrt SDK"
 
