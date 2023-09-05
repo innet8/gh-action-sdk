@@ -3,7 +3,7 @@ FROM $CONTAINER:ipq40xx-generic-22.03.0
 
 ENV ARCH=$ARCH
 RUN sudo apt-get update -qqy && sudo apt-get install --assume-yes apt-utils
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && \
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
     sudo apt-get install -y nodejs
 LABEL "com.github.actions.name"="OpenWrt SDK"
 COPY mbedtls-2.12.0-gpl.tgz /home/build/
