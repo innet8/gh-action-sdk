@@ -5,7 +5,7 @@ set -ef
 FEEDNAME="${FEEDNAME:-action}"
 BUILD_LOG="${BUILD_LOG:-1}"
 
-cd /home/build/openwrt/
+cd /builder
 
 if [ -z "$NO_DEFAULT_FEEDS" ]; then
     sed \
